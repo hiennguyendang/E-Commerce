@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosConfig";
 import ProductList from "../components/product/ProductList";
 import ProductFilter from "../components/product/ProductFilter";
-import Spinner from "../components/common/Spinner";
+// import Spinner from "../components/common/Spinner";
 
 export default function HomePage({ onAddToCart }) {
   const [products, setProducts] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -23,7 +23,7 @@ export default function HomePage({ onAddToCart }) {
       } catch (err) {
         console.error("Không thể tải dữ liệu:", err);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     }
     fetchData();
@@ -36,7 +36,7 @@ export default function HomePage({ onAddToCart }) {
     setFiltered(result);
   };
 
-  if (loading) return <Spinner message="Đang tải sản phẩm..." />;
+  // if (loading) return <Spinner message="Đang tải sản phẩm..." />;
 
   return (
     <div className="row g-4">
