@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosConfig";
-import Spinner from "../components/common/Spinner";
+// import Spinner from "../components/common/Spinner";
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchOrders() {
@@ -14,13 +14,13 @@ export default function OrdersPage() {
       } catch (err) {
         console.error("Không thể tải đơn hàng:", err);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     }
     fetchOrders();
   }, []);
 
-  if (loading) return <Spinner message="Đang tải đơn hàng..." />;
+  // if (loading) return <Spinner message="Đang tải đơn hàng..." />;
 
   return (
     <div className="container py-4">

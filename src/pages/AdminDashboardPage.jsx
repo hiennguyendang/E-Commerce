@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosConfig";
-import Spinner from "../components/common/Spinner";
+// import Spinner from "../components/common/Spinner";
 
 export default function AdminDashboardPage() {
   const [stats, setStats] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchStats() {
@@ -14,13 +14,13 @@ export default function AdminDashboardPage() {
       } catch (err) {
         console.error("Không thể tải thống kê:", err);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     }
     fetchStats();
   }, []);
 
-  if (loading) return <Spinner message="Đang tải thống kê..." />;
+  // if (loading) return <Spinner message="Đang tải thống kê..." />;
 
   return (
     <div className="container py-4">

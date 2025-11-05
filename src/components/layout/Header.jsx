@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "../common/SearchBar";
+import shopeeWhite from "../../assets/imgs/shopee-white.png";
+
 
 export default function Header({ user, onLogout  }) {
   return (
@@ -10,7 +12,7 @@ export default function Header({ user, onLogout  }) {
           {/* Cột trái: logo + tiêu đề */}
           <div className="left-rail">
             <Link to="/app" className="d-flex align-items-center text-white text-decoration-none">
-              <img src="/shopee-white.png" alt="logo" className="bk-logo me-2" />
+              <img src={shopeeWhite} alt="logo" className="bk-logo me-2" />
               <span className="bk-title">Shopee Clone</span>
             </Link>
           </div>
