@@ -1,6 +1,5 @@
-// src/App.js
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 // Layout & pages
 import AppLayout from "./components/layout/AppLayout";
@@ -16,7 +15,6 @@ import SellerDashboardPage from "./pages/SellerDashboardPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 
 export default function App() {
-  // Lấy user từ localStorage (nếu có phiên trước)
   const [user, setUser] = useState(() => {
     try {
       const raw = localStorage.getItem("user");
@@ -26,7 +24,6 @@ export default function App() {
     }
   });
 
-  // Giỏ hàng front-end (cơ bản)
   const [cartItems, setCartItems] = useState(() => {
     try {
       const raw = localStorage.getItem("cart");
@@ -36,14 +33,12 @@ export default function App() {
     }
   });
 
-  // Lưu cart khi thay đổi
   useEffect(() => {
     try {
       localStorage.setItem("cart", JSON.stringify(cartItems));
     } catch {}
   }, [cartItems]);
 
-  // Hàm thêm vào giỏ (dùng chung)
   const handleAddToCart = (product) => {
     setCartItems((prev) => {
       const exist = prev.find((it) => it.id === product.id);
@@ -55,11 +50,9 @@ export default function App() {
         return [...prev, { ...product, quantity: product.quantity || 1 }];
       }
     });
-    // Có thể thay bằng toast thay vì alert
     alert(`Đã thêm "${product.name}" vào giỏ hàng.`);
   };
 
-  // Hàm đăng xuất
   const handleLogout = () => {
     setUser(null);
     try {
@@ -67,17 +60,15 @@ export default function App() {
     } catch {}
   };
 
-  // Hàm xử lý login từ LoginForm
   const handleLogin = (userObj) => {
     setUser(userObj);
-    // localStorage đã được ghi trong LoginForm nhưng đảm bảo lại
     try {
       localStorage.setItem("user", JSON.stringify(userObj));
     } catch {}
   };
 
   return (
-    <BrowserRouter>
+    <>
       {user ? (
         <Routes>
           <Route path="/app" element={<AppLayout user={user} onLogout={handleLogout} />}>
@@ -101,6 +92,6 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       )}
-    </BrowserRouter>
+    </>
   );
 }
